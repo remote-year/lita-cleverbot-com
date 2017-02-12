@@ -57,7 +57,8 @@ module Lita
 
       def conversation_state(payload)
         s = redis.hget(CONVERSATION_HASH_KEY, conversation_key(payload))
-        JSON.parse(s) if s
+        return { } unless s
+        JSON.parse(s)
       end
 
       def payload_message(payload)
